@@ -1,7 +1,15 @@
-require("dapui").setup()
 
-local dap, dapui = require("dap"), require("dapui")
+local dap=require("dap")
+local dapui=require("dapui")
+local dap_python =require("dap-python")
 
+local path='C:\\Users\\timor\\.virtualenvs\\debugpy\\Scripts\\python'
+
+--setup the plugins
+dap_python.setup(path)
+dapui.setup()
+
+--setting up the debbufer ui
 dap.listeners.after.event_initialized["dapui_config"] = function()
   dapui.open()
 end
@@ -12,6 +20,11 @@ dap.listeners.before.event_exited["dapui_config"] = function()
   dapui.close()
 end
 
-vim.keymap.set("n", "<Leader>dt", ':DapToggleBreakpoint<CR>')
-vim.keymap.set("n", "<Leader>dx", ':DapTerminate<CR>')
-vim.keymap.set("n", "<Leader>do", ':DapStepOver<CR>')
+--python
+dap.adapters.python={
+    type='executable';
+    command=path;
+    args = { '-m', 'debugpy.adapter' };
+}
+
+

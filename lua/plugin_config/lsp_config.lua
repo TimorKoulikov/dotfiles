@@ -1,5 +1,5 @@
 require("mason-lspconfig").setup({
-  ensure_installed = { "lua_ls" ,"asm_lsp"}
+  ensure_installed = { "lua_ls" ,"asm_lsp","pyright"}
 })
 
 local lspconfig = require('lspconfig')
@@ -11,8 +11,8 @@ lsp_defaults.capabilities = vim.tbl_deep_extend(
   lsp_defaults.capabilities,
   require('cmp_nvim_lsp').default_capabilities()
 )
-
-require("lspconfig").lua_ls.setup {
+lspconfig.pyright.setup{}
+lspconfig.lua_ls.setup {
   settings = {
     Lua = {
       diagnostics = {

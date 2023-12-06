@@ -51,4 +51,8 @@ require("lazy").setup({
   'slim-template/vim-slim',
   --Git
   'lewis6991/gitsigns.nvim',
+  --Debuggin tools
+  'mfussenegger/nvim-dap',
+  {'mfussenegger/nvim-dap-python',dependencies={'mfussenegger/nvim-dap'},ft='python'},
+  {'rcarriga/nvim-dap-ui',dependencies='mfussenegger/nvim-dap'},
 })
